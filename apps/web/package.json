@@ -6,26 +6,28 @@
     "dev": "next dev --port 3000",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "check-types": "tsc --noEmit"
   },
   "dependencies": {
+    "@repo/stripe": "workspace:*",
     "@repo/mailer": "workspace:*",
-    "@repo/tailwind-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
     "@repo/ui": "workspace:*",
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
     "next": "16.2.10",
     "react": "19.2.4",
-    "react-dom": "19.2.4",
-    "tailwindcss": "^4",
-    "typescript": "^5"
+    "react-dom": "19.2.4"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
-    "eslint": "^9",
-    "eslint-config-next": "16.2.10"
+    "@repo/tailwind-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^24",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9.39.1",
+    "eslint-config-next": "16.2.10",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5.9.2"
   }
 }

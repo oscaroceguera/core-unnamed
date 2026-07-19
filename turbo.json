@@ -5,7 +5,14 @@
     "build": {
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "outputs": [".next/**", "!.next/cache/**", "!.next/dev/**"]
+      "outputs": [".next/**", "!.next/cache/**", "!.next/dev/**"],
+      "env": [
+        "INFRA_REGION",
+        "INFRA_ACCESS_KEY_ID",
+        "INFRA_SECRET_ACCESS_KEY",
+        "STRIPE_PRICE_ID",
+        "STRIPE_WEBHOOK_SIGNING_SECRET"
+      ]
     },
     "lint": {
       "dependsOn": ["^lint"]

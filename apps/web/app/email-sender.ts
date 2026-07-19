@@ -8,10 +8,9 @@ export async function emailSender(): Promise<
   try {
     await sendEmail({
       to: "oscar@jsconf.mx",
-      subject:
-        "🎁 JSConf MX 2026 - ¡Recibiste un Boleto de Regalo! | You Received a Gift Ticket!",
-      text: "Hello oscar?",
-      html: "<h1>Hola Oscar Eduardo</h1>",
+      subject: "Example Subject",
+      text: "Hello Dude!",
+      html: "<h1>Hello Dude!</h1>",
     });
     return { ok: true };
   } catch (error) {

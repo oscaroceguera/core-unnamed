@@ -1,10 +1,12 @@
 "use client";
 
-import { startTransition } from "react";
+import { useTransition } from "react";
 
 import { emailSender } from "./email-sender";
 
 export const BtnSendEmail = () => {
+  const [isPending, startTransition] = useTransition();
+
   const handleSendEmail = () => {
     startTransition(async () => {
       const result = await emailSender();
@@ -15,9 +17,9 @@ export const BtnSendEmail = () => {
   return (
     <button
       onClick={handleSendEmail}
-      className="rounded-2xl border bg-orange-700 p-4 text-white"
+      className="rounded-md bg-black p-2 text-white"
     >
-      Send Email
+      {isPending ? "Loading..." : "Send Email 📧"}
     </button>
   );
 };
