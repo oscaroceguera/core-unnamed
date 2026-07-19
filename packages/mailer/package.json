@@ -1,0 +1,17 @@
+{
+  "name": "@repo/mailer",
+  "private": true,
+  "exports": {
+    ".": "./index.ts"
+  },
+  "dependencies": {
+    "@aws-sdk/client-sesv2": "^3.1090.0",
+    "nodemailer": "^9.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/nodemailer": "^8.0.1",
+    "tsx": "^4.23.1",
+    "typescript": "^7.0.2"
+  }
+}
