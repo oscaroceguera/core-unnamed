@@ -1,6 +1,7 @@
 import { headers } from "next/headers";
 import { NextRequest } from "next/server";
-import { stripe } from "@repo/stripe";
+
+import { stripe } from "../../../../../packages/stripe/src";
 
 export const dynamic = "force-dynamic";
 

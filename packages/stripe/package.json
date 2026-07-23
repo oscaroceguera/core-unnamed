@@ -1,10 +1,16 @@
 {
   "name": "@repo/stripe",
   "private": true,
+  "type": "module",
   "exports": {
-    ".": "./index.ts"
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./dist/index.js"
+    }
   },
   "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc",
     "check-types": "tsc --noEmit"
   },
   "devDependencies": {
