@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@repo/stripe": "workspace:*",
+    "@repo/database": "workspace:*",
     "@repo/mailer": "workspace:*",
     "@repo/ui": "workspace:*",
     "next": "16.2.10",

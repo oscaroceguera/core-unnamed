@@ -1,0 +1,22 @@
+{
+  "name": "@repo/database",
+  "private": true,
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "migrate:dev": "prisma migrate dev",
+    "generate": "prisma generate"
+  },
+  "devDependencies": {
+    "@types/node": "^24",
+    "@types/pg": "^8.20.0",
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "@prisma/adapter-pg": "^7.9.0",
+    "@prisma/client": "^7.9.0",
+    "@repo/typescript-config": "workspace:*",
+    "pg": "^8.22.0",
+    "prisma": "^7.9.0"
+  }
+}
