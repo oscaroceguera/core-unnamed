@@ -59,6 +59,7 @@ Other root scripts:
 |---|---|
 | `DATABASE_URL` | Neon Postgres connection string (Prisma, `@repo/database`) |
 | `STRIPE_SECRET_KEY`, `STRIPE_PRICE_ID` | Stripe checkout (`@repo/stripe`) |
+| `STRIPE_WEBHOOK_SIGNING_SECRET` | Verifies Stripe webhook signatures in `app/api/webhook/route.ts` — not in `.env.example` yet, add it when wiring up webhooks locally |
 | `INFRA_REGION`, `INFRA_ACCESS_KEY_ID`, `INFRA_SECRET_ACCESS_KEY` | AWS SES admin email notifications (`@repo/mailer`) |
 
 `packages/database` also reads its own `DATABASE_URL` from a local `.env` for Prisma CLI commands (`pnpm db:generate`, `pnpm db:migrate:dev`).
