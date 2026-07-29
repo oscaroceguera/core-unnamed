@@ -1,0 +1,53 @@
+{
+  "skill": "new-internal-pkg",
+  "cases": [
+    {
+      "id": "straightforward-name-given",
+      "prompt": "create a new internal package called facturacion",
+      "expected_output": "A new packages/facturacion/ workspace package scaffolded from assets/structure-template.md with {{PACKAGE_NAME}} substituted, package.json name @repo/facturacion, pnpm install run, and scripts/create-new-package.sh facturacion passing all checks.",
+      "assertions": [
+        "packages/facturacion/package.json, tsconfig.json, and src/index.ts all exist",
+        "package.json name is exactly '@repo/facturacion', not 'facturacion' or 'facturacion-package'",
+        "package.json exports.\".\".types is './src/index.ts' and exports.\".\".default is './dist/index.js'",
+        "tsconfig.json extends '@repo/typescript-config/base.json' and declares its own include/exclude arrays",
+        "pnpm install (or equivalent) was run so the pnpm workspace recognizes @repo/facturacion",
+        "scripts/create-new-package.sh facturacion was run and reported all checks passing before the task was declared done"
+      ]
+    },
+    {
+      "id": "vague-request-needs-name",
+      "prompt": "I need a new package for this turborepo",
+      "expected_output": "The agent asks the user for a package name (kebab-case) before scaffolding anything, rather than guessing a name or creating a placeholder-named directory.",
+      "assertions": [
+        "No packages/ directory is created before the user supplies a name",
+        "The agent's response asks for the package name, following step 1 of SKILL.md",
+        "Once a name is provided, the rest of the flow (structure-template.md, pnpm install, validation script) proceeds normally",
+        "No package is scaffolded with a guessed or generic name like 'new-package' or 'untitled'"
+      ]
+    },
+    {
+      "id": "sdk-wrapper-package-with-runtime-deps",
+      "prompt": "create a new internal package called twilio that wraps the Twilio SDK for sending SMS, similar to how packages/stripe wraps Stripe",
+      "expected_output": "A packages/twilio/ package following the SDK-wrapping guidance in references/new-internal-pkg-best-practices.md — the twilio SDK is added under dependencies (not devDependencies), and src/index.ts is the single integration surface rather than a wholesale re-export of the SDK.",
+      "assertions": [
+        "references/new-internal-pkg-best-practices.md 'Adapting to Package Type' guidance for SDK-wrapping packages was consulted",
+        "package.json has 'twilio' (or the correct SDK package name) listed under dependencies, not devDependencies",
+        "devDependencies still contains @repo/typescript-config, @types/node, and typescript per the base template",
+        "package.json name is '@repo/twilio'",
+        "scripts/create-new-package.sh twilio passes, including the check-types run"
+      ]
+    },
+    {
+      "id": "validation-catches-broken-scaffold",
+      "prompt": "I manually created packages/analytics with just a package.json (name '@repo/analytics', no exports field) and no tsconfig.json — can you check if it's set up correctly and fix it?",
+      "expected_output": "Running scripts/create-new-package.sh analytics reports specific FAIL lines for the missing tsconfig.json, src/index.ts, and exports field; the agent reads the failures and fixes the package to match assets/structure-template.md, then re-runs the script to confirm a clean pass.",
+      "assertions": [
+        "scripts/create-new-package.sh analytics is run at least once before any fix is made, to establish a baseline",
+        "The script's FAIL output for missing tsconfig.json, missing src/index.ts, and missing/incomplete exports is correctly identified and addressed",
+        "The fixed package.json includes exports.\".\".types and exports.\".\".default matching outDir/rootDir in the newly added tsconfig.json",
+        "scripts/create-new-package.sh analytics is re-run after fixes and exits 0 with no FAIL lines",
+        "The agent does not declare the task done based on the first (failing) run"
+      ]
+    }
+  ]
+}
