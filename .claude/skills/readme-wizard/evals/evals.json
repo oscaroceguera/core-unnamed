@@ -1,0 +1,56 @@
+{
+  "skill": "readme-wizard",
+  "cases": [
+    {
+      "id": "straightforward-improve",
+      "prompt": "improve the README for this project",
+      "expected_output": "An updated README.md that keeps whatever was already accurate, restructures it to follow the skill's section order (hero, badges, what-is-this, quick start, structure, docs table, contributing, optional connect, star history footer), and fills gaps using facts actually detected in the repo — not a rewrite that invents content the repo doesn't support.",
+      "assertions": [
+        "README.md exists and was modified, not left untouched",
+        "Section order matches assets/readme-template.md (hero/badges first, contributing/social/star-history last)",
+        "No {{PLACEHOLDER}} tokens remain unresolved anywhere in the output",
+        "Install/run commands in Quick Start match the actual detected package manager and real scripts (e.g. from package.json), not a generic or guessed command",
+        "Any pre-existing accurate content (e.g. a correct project description) is preserved or improved, not deleted without reason",
+        "Badges present only correspond to things confirmed to exist (real license file, real CI workflow, real GitHub remote)"
+      ]
+    },
+    {
+      "id": "casual-professional-request",
+      "prompt": "my repo needs a better README, can you make it look professional? it's kind of a mess right now",
+      "expected_output": "A polished, professional-reading README that fixes structure/tone problems without adding marketing fluff or fabricated claims — casual phrasing in the request should not lower the bar on fact-grounding.",
+      "assertions": [
+        "Tone matches the Writing Tone guidance in references/readme-best-practices.md: concrete and specific, no unverifiable superlatives like 'blazing-fast', 'next-generation', 'revolutionizes'",
+        "Hero section is centered with project name, one-line tagline, and a badge row, per assets/readme-template.md",
+        "Every badge and link resolves to a real, detected value (git remote owner/repo, real license, real CI workflow) — nothing fabricated to look more impressive",
+        "'Professional' is achieved through structure and clarity, not through invented sections that don't apply to this project (per Adapting to Project Type)",
+        "No leftover placeholder text (e.g. 'OWNER/REPO', 'TODO', lorem ipsum) in the final output"
+      ]
+    },
+    {
+      "id": "minimal-project-proportional",
+      "prompt": "Generate a README for this project. It's just a small script, nothing fancy.",
+      "expected_output": "A short README proportional to a small-utility project: a tight Quick Start and a clear usage example, without padding in unnecessary sections — following the Small utility / script row in the Adapting to Project Type table.",
+      "assertions": [
+        "README is noticeably short — no 12-section README for a single-script project",
+        "Quick Start is present and is a single tight block with the real run command",
+        "Contributor avatar grid, star history chart, and social badges are omitted (not applicable to a small solo-maintainer script per Adapting to Project Type)",
+        "No project structure tree or docs table section if the project has no meaningful subdirectories or docs to link",
+        "No mermaid architecture diagram — skipped per the Mermaid Diagrams guidance for single-file utilities",
+        "Description is specific to what the script actually does, not generic filler expanded to fill space"
+      ]
+    },
+    {
+      "id": "badge-focused-request",
+      "prompt": "I want to add some nice badges to my README, the shields.io kind. Can you help?",
+      "expected_output": "A badge row added/updated in the README using exact shields.io URL formats from assets/badges.json, all with style=for-the-badge, limited to 3-5 status badges, and only for things that actually exist in the repo — no fabricated badges for nonexistent CI, releases, or social channels.",
+      "assertions": [
+        "Every badge URL uses style=for-the-badge and matches a format defined in assets/badges.json",
+        "Badge {{PLACEHOLDER}} values (OWNER, REPO, WORKFLOW_FILE, PACKAGE, etc.) are all resolved to real detected values, never left as literal placeholder text",
+        "Status badge count is in the 3-5 sweet-spot range, not a long row of every possible badge",
+        "No CI badge added if no CI workflow file was found; no version badge if there are no releases/tags; no social badges for platforms with no detected link",
+        "Badges are placed in the hero section directly under the title/tagline, per README Structure in SKILL.md",
+        "If the repo doesn't actually have things to badge (e.g. no CI, no license file), the response says so rather than inventing a badge anyway"
+      ]
+    }
+  ]
+}
