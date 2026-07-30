@@ -13,6 +13,7 @@
     "@repo/assets": "workspace:*",
     "@repo/stripe": "workspace:*",
     "@repo/database": "workspace:*",
+    "@repo/facturapi": "workspace:*",
     "@repo/mailer": "workspace:*",
     "@repo/ui": "workspace:*",
     "next": "16.2.11",

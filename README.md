@@ -23,10 +23,12 @@ flowchart TD
     web --> mailer["@repo/mailer"]
     web --> stripe["@repo/stripe"]
     web --> assets["@repo/assets"]
+    web --> facturapi["@repo/facturapi"]
 
     database --> neon[("Neon Postgres")]
     mailer --> ses[("AWS SES")]
     stripe --> stripeApi[("Stripe API")]
+    facturapi --> facturapiApi[("Facturapi API")]
     web --> vercel[["▲ Vercel"]]
 ```
 
@@ -62,6 +64,7 @@ Other root scripts:
 | `STRIPE_SECRET_KEY`, `STRIPE_PRICE_ID` | Stripe checkout (`@repo/stripe`) |
 | `STRIPE_WEBHOOK_SIGNING_SECRET` | Verifies Stripe webhook signatures in `app/api/webhook/route.ts` — not in `.env.example` yet, add it when wiring up webhooks locally |
 | `INFRA_REGION`, `INFRA_ACCESS_KEY_ID`, `INFRA_SECRET_ACCESS_KEY` | AWS SES admin email notifications (`@repo/mailer`) |
+| `FACTURA_API_KEY` | CFDI invoicing via Facturapi (`@repo/facturapi`) |
 
 `packages/database` also reads its own `DATABASE_URL` from a local `.env` for Prisma CLI commands (`pnpm db:generate`, `pnpm db:migrate:dev`).
 
@@ -75,6 +78,7 @@ Other root scripts:
 | `packages/mailer` | `@repo/mailer` | Transactional email via AWS SES (`@aws-sdk/client-sesv2`) and Nodemailer. |
 | `packages/stripe` | `@repo/stripe` | Thin wrapper around the `stripe` SDK for payments/ticketing. |
 | `packages/assets` | `@repo/assets` | Static SVG icons/illustrations/logos, exported for direct import (`@repo/assets/images/*`). |
+| `packages/facturapi` | `@repo/facturapi` | Thin wrapper around the `facturapi` SDK for CFDI invoicing. |
 | `packages/eslint-config` | `@repo/eslint-config` | Shared ESLint flat-config presets: `base`, `next-js`, `react-internal`. |
 | `packages/prettier-config` | `@repo/prettier-config` | Shared Prettier config with import-sorting and Tailwind class-sorting plugins. |
 | `packages/tailwindcss-config` | `@repo/tailwind-config` | Shared Tailwind CSS 4 config and PostCSS setup. |
@@ -90,6 +94,7 @@ Other root scripts:
     ├── assets/                 # SVG icons/illustrations/logos (@repo/assets)
     ├── database/              # Prisma + Neon data layer (@repo/database)
     ├── eslint-config/          # Shared ESLint configs
+    ├── facturapi/              # CFDI invoicing via Facturapi (@repo/facturapi)
     ├── mailer/                 # Email sending via AWS SES (@repo/mailer)
     ├── prettier-config/        # Shared Prettier config
     ├── stripe/                 # Stripe client wrapper (@repo/stripe)
