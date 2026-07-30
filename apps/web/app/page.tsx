@@ -1,3 +1,7 @@
+import Image from "next/image";
+import IconMainMx from "@repo/assets/images/icons/mainMx.svg";
+import IconAxolotl from "@repo/assets/images/illustrations/axolotl.svg";
+import IconPrimary from "@repo/assets/images/logos/primary.svg";
 import { prisma } from "@repo/database";
 import { Card } from "@repo/ui/Card";
 
@@ -34,7 +38,7 @@ export default async function Home() {
       </Card>
 
       <Card
-        title="Databse consult"
+        title="Database consult"
         color="tertiary"
         sx="w-full md:w-2xl mx-auto my-10"
       >
@@ -45,6 +49,17 @@ export default async function Home() {
             <li>Email: {user.email}</li>
           </ul>
         ))}
+      </Card>
+      <Card
+        title="Assets consult"
+        sx="w-full md:w-2xl mx-auto my-10"
+        color="primary"
+      >
+        <div className="grid grid-cols-3 items-center justify-items-center">
+          <Image src={IconMainMx} alt="Made in mexico" />
+          <Image src={IconAxolotl} alt="Axolotl" loading="eager" />
+          <Image src={IconPrimary} alt="Brand icon" />
+        </div>
       </Card>
     </div>
   );
