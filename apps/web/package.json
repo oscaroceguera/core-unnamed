@@ -10,6 +10,7 @@
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
+    "@repo/assets": "workspace:*",
     "@repo/stripe": "workspace:*",
     "@repo/database": "workspace:*",
     "@repo/mailer": "workspace:*",

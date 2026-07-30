@@ -22,6 +22,7 @@ flowchart TD
     web --> database["@repo/database"]
     web --> mailer["@repo/mailer"]
     web --> stripe["@repo/stripe"]
+    web --> assets["@repo/assets"]
 
     database --> neon[("Neon Postgres")]
     mailer --> ses[("AWS SES")]
@@ -73,6 +74,7 @@ Other root scripts:
 | `packages/database` | `@repo/database` | Prisma data layer on Neon Postgres via `@prisma/adapter-pg`; exports a singleton client and generated types. |
 | `packages/mailer` | `@repo/mailer` | Transactional email via AWS SES (`@aws-sdk/client-sesv2`) and Nodemailer. |
 | `packages/stripe` | `@repo/stripe` | Thin wrapper around the `stripe` SDK for payments/ticketing. |
+| `packages/assets` | `@repo/assets` | Static SVG icons/illustrations/logos, exported for direct import (`@repo/assets/images/*`). |
 | `packages/eslint-config` | `@repo/eslint-config` | Shared ESLint flat-config presets: `base`, `next-js`, `react-internal`. |
 | `packages/prettier-config` | `@repo/prettier-config` | Shared Prettier config with import-sorting and Tailwind class-sorting plugins. |
 | `packages/tailwindcss-config` | `@repo/tailwind-config` | Shared Tailwind CSS 4 config and PostCSS setup. |
@@ -85,6 +87,7 @@ Other root scripts:
 ├── apps/
 │   └── web/                  # Next.js marketing/ticketing site
 └── packages/
+    ├── assets/                 # SVG icons/illustrations/logos (@repo/assets)
     ├── database/              # Prisma + Neon data layer (@repo/database)
     ├── eslint-config/          # Shared ESLint configs
     ├── mailer/                 # Email sending via AWS SES (@repo/mailer)

@@ -16,6 +16,7 @@ A Next.js 16 (App Router) app built on the monorepo's shared packages:
 - `@repo/database` — Prisma client (`prisma.user.findMany()` on the homepage)
 - `@repo/stripe` — Stripe checkout session creation and webhook handling
 - `@repo/mailer` — transactional email via AWS SES
+- `@repo/assets` — SVG icons/illustrations/logos, imported directly on the homepage (`@repo/assets/images/...`)
 - `@repo/tailwind-config` — shared Tailwind CSS 4 config, imported in `app/globals.css`
 
 Routes:
@@ -77,7 +78,7 @@ Copy `.env.example` to `.env` and fill in:
 │   ├── email-sender.ts      # Server action: send test email
 │   ├── globals.css          # Tailwind + @repo/tailwind-config entrypoint
 │   ├── layout.tsx
-│   └── page.tsx
+│   └── page.tsx             # Homepage, incl. @repo/assets image demo
 └── public/                  # Static assets
 ```
 
