@@ -38,7 +38,7 @@ const users = await prisma.user.findMany();
 
 | Command | Description |
 |---|---|
-| `pnpm generate` | Regenerate the Prisma client into `src/generated/prisma` |
+| `pnpm db:generate` | Regenerate the Prisma client into `src/generated/prisma` |
 | `pnpm migrate:dev` | Create/apply a dev migration (`prisma migrate dev`) |
 
 Run these from `packages/database` with a local `.env` containing `DATABASE_URL`, or via the root scripts `pnpm db:generate` / `pnpm db:migrate:dev`.
