@@ -5,7 +5,7 @@
   "types": "./src/index.ts",
   "scripts": {
     "migrate:dev": "prisma migrate dev",
-    "generate": "prisma generate"
+    "db:generate": "prisma generate"
   },
   "devDependencies": {
     "@types/node": "^24",

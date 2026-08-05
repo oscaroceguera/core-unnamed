@@ -52,6 +52,9 @@ importers:
       '@repo/database':
         specifier: workspace:*
         version: link:../../packages/database
+      '@repo/facturapi':
+        specifier: workspace:*
+        version: link:../../packages/facturapi
       '@repo/mailer':
         specifier: workspace:*
         version: link:../../packages/mailer
@@ -70,6 +73,9 @@ importers:
       react-dom:
         specifier: 19.2.4
         version: 19.2.4(react@19.2.4)
+      zod:
+        specifier: ^4.4.3
+        version: 4.4.3
     devDependencies:
       '@repo/eslint-config':
         specifier: workspace:*
@@ -170,6 +176,22 @@ importers:
       typescript-eslint:
         specifier: ^8.50.0
         version: 8.50.0(eslint@9.39.1(jiti@2.7.0))(typescript@5.9.2)
+
+  packages/facturapi:
+    dependencies:
+      facturapi:
+        specifier: ^4.18.0
+        version: 4.18.0
+    devDependencies:
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
+      '@types/node':
+        specifier: ^24.13.3
+        version: 24.13.3
+      typescript:
+        specifier: ^5.9.2
+        version: 5.9.2
 
   packages/mailer:
     dependencies:
@@ -1895,6 +1917,10 @@ packages:
 
   exsolve@1.1.0:
     resolution: {integrity: sha512-D+42+T12DdIlJM3uepa55qGiL3sYdLBOxIl2ifQCzCHz4c7eiolaHsi3BIqEr7JxBzxv2pYZQX9kw16ziMcEmw==}
+
+  facturapi@4.18.0:
+    resolution: {integrity: sha512-HR13NU6NNEe2PB8Y76uTQLCYn/3EGxjN8Y+cGiM4ZZkzwKe3QPavBnQINWp7Mo1HTX37nlVWmuG82HPjfBjYlQ==}
+    engines: {node: '>=18.0.0', npm: '>=10.0.0'}
 
   fast-check@3.23.2:
     resolution: {integrity: sha512-h5+1OzzfCC3Ef7VbtKdcv7zsstUQwUDlYpUTvjeUsJAssPgLn7QzbboPtL5ro04Mq0rPOsMzl7q5hIbRs2wD1A==}
@@ -4937,6 +4963,8 @@ snapshots:
   esutils@2.0.3: {}
 
   exsolve@1.1.0: {}
+
+  facturapi@4.18.0: {}
 
   fast-check@3.23.2:
     dependencies:
