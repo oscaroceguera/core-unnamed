@@ -2,7 +2,7 @@
 
 import { useTransition } from "react";
 
-import { emailSender } from "./email-sender";
+import { emailSender } from "@/actions/email-sender";
 
 export const BtnSendEmail = () => {
   const [isPending, startTransition] = useTransition();

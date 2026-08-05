@@ -23,8 +23,8 @@ export async function checkoutStripe(
         checkoutHostUrl: "http://localhost:3000",
       },
       mode: "payment",
-      success_url: "http://localhost:3000/success-stripe",
-      cancel_url: "http://localhost:3000/error-stripe",
+      success_url: "http://localhost:3000/stripe/success-stripe",
+      cancel_url: "http://localhost:3000/stripe/error-stripe",
     });
     sessionUrl = session.url ?? "";
   } catch (error) {
