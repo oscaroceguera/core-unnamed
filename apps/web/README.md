@@ -6,7 +6,7 @@
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss&logoColor=white)
 ![Stripe](https://img.shields.io/badge/Stripe-checkout-635BFF?logo=stripe&logoColor=white)
 
-Next.js app for the JSConf México site — homepage, Stripe ticket checkout, a transactional email demo, and the Prisma-backed user list. Part of the [JSConfMx/core](../../README.md) monorepo; see the root README for the full package graph.
+Next.js app for the JSConf México site — homepage, Stripe ticket checkout, CFDI invoicing, a transactional email demo, and the Prisma-backed user list. Part of the [JSConfMx/core](../../README.md) monorepo; see the root README for the full package graph.
 
 ## What is this?
 
@@ -15,6 +15,7 @@ A Next.js 16 (App Router) app built on the monorepo's shared packages:
 - `@repo/ui` — `Card` component used across the homepage
 - `@repo/database` — Prisma client (`prisma.user.findMany()` on the homepage)
 - `@repo/stripe` — Stripe checkout session creation and webhook handling
+- `@repo/facturapi` — CFDI invoice creation and email delivery
 - `@repo/mailer` — transactional email via AWS SES
 - `@repo/assets` — SVG icons/illustrations/logos, imported directly on the homepage (`@repo/assets/images/...`)
 - `@repo/tailwind-config` — shared Tailwind CSS 4 config, imported in `app/globals.css`
@@ -23,12 +24,13 @@ Routes:
 
 | Route | Purpose |
 |---|---|
-| `app/page.tsx` | Homepage — email demo card, Stripe checkout card, Prisma user list |
-| `app/success-stripe` | Stripe checkout success redirect |
-| `app/error-stripe` | Stripe checkout error redirect |
+| `app/page.tsx` | Homepage — email demo, Stripe checkout, Prisma user list, assets demo, invoicing form |
+| `app/stripe/success-stripe` | Stripe checkout success redirect |
+| `app/stripe/error-stripe` | Stripe checkout error redirect |
 | `app/api/webhook` | Stripe webhook handler (`stripe.webhooks.constructEvent`) |
 | `actions/checkoutStripe.ts` | Server action that creates the Stripe checkout session |
-| `app/email-sender.ts` | Server action that sends a test email via `@repo/mailer` |
+| `actions/invoice-action.ts` | Server action that validates the invoice form (`types/invoice-schema.ts`) and creates + emails a CFDI invoice via `@repo/facturapi` |
+| `actions/email-sender.ts` | Server action that sends a test email via `@repo/mailer` |
 
 ## Quick Start
 
@@ -49,9 +51,9 @@ Copy `.env.example` to `.env` and fill in:
 |---|---|
 | `DATABASE_URL` | Neon Postgres connection string (Prisma, `@repo/database`) |
 | `STRIPE_SECRET_KEY`, `STRIPE_PRICE_ID` | Stripe checkout session creation |
+| `STRIPE_WEBHOOK_SIGNING_SECRET` | Verifies Stripe webhook signatures in `app/api/webhook/route.ts` |
+| `FACTURA_API_KEY` | CFDI invoicing via `@repo/facturapi` (`actions/invoice-action.ts`) |
 | `INFRA_REGION`, `INFRA_ACCESS_KEY_ID`, `INFRA_SECRET_ACCESS_KEY` | AWS SES transactional email (`@repo/mailer`) |
-
-`app/api/webhook/route.ts` also reads `STRIPE_WEBHOOK_SIGNING_SECRET` to verify Stripe webhook signatures — not currently listed in `.env.example`, add it when wiring up the webhook locally.
 
 ## Scripts
 
@@ -68,17 +70,27 @@ Copy `.env.example` to `.env` and fill in:
 ```text
 .
 ├── actions/
-│   └── checkoutStripe.ts   # Server action: create Stripe checkout session
+│   ├── checkoutStripe.ts    # Server action: create Stripe checkout session
+│   ├── email-sender.ts      # Server action: send test email
+│   └── invoice-action.ts    # Server action: validate + create/email a CFDI invoice
 ├── app/
 │   ├── api/webhook/         # Stripe webhook handler
-│   ├── error-stripe/        # Checkout error page
-│   ├── success-stripe/      # Checkout success page
-│   ├── BtnCheckoutStripe.tsx
-│   ├── BtnSendEmail.tsx
-│   ├── email-sender.ts      # Server action: send test email
+│   ├── stripe/
+│   │   ├── error-stripe/    # Checkout error page
+│   │   └── success-stripe/  # Checkout success page
 │   ├── globals.css          # Tailwind + @repo/tailwind-config entrypoint
 │   ├── layout.tsx
-│   └── page.tsx             # Homepage, incl. @repo/assets image demo
+│   └── page.tsx             # Homepage — renders the components below
+├── components/
+│   ├── AssetsAccess.tsx     # @repo/assets image demo
+│   ├── BtnCheckoutStripe.tsx
+│   ├── BtnSendEmail.tsx
+│   ├── DatabaseCard.tsx     # Prisma user list
+│   ├── Invoicing.tsx        # CFDI invoice form (useActionState + invoice-action)
+│   ├── SendEmail.tsx
+│   └── StripeCheckout.tsx
+├── types/
+│   └── invoice-schema.ts    # Zod schemas for the invoice form + action state
 └── public/                  # Static assets
 ```
 

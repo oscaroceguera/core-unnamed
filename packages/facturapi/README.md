@@ -4,13 +4,13 @@ Thin wrapper around the [`facturapi`](https://www.npmjs.com/package/facturapi) S
 
 ## What is this?
 
-- `getFaturapi()` — lazily creates and caches a `Facturapi` client from `FACTURA_API_KEY`, pinned to `apiVersion: "v2"`; throws if the key is missing
-- `factuapi` — a `Proxy` over `getFaturapi()` kept for call sites that access `factuapi.*` directly instead of calling `getFaturapi()` first
+- `getFacturapi()` — lazily creates and caches a `Facturapi` client from `FACTURA_API_KEY`, pinned to `apiVersion: "v2"`; throws if the key is missing
+- `facturapi` — a `Proxy` over `getFacturapi()` kept for call sites that access `facturapi.*` directly instead of calling `getFacturapi()` first
 
 ```ts
-import { factuapi } from "@repo/facturapi";
+import { facturapi } from "@repo/facturapi";
 
-const invoice = await factuapi.invoices.create({
+const invoice = await facturapi.invoices.create({
   customer: customerId,
   items: [{ quantity: 1, product: { description: "JSConf MX ticket", price: 1500 } }],
   payment_form: "03",
