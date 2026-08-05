@@ -68,6 +68,41 @@ Other root scripts:
 
 `packages/database` also reads its own `DATABASE_URL` from a local `.env` for Prisma CLI commands (`pnpm db:generate`, `pnpm db:migrate:dev`).
 
+## Using This as a Template
+
+This repo doubles as a starter for new Turborepo + pnpm projects with Next.js, Prisma/Neon, Stripe, and SES already wired together.
+
+1. **Get a copy** — pick one:
+
+   - **`create-turbo` (recommended)** — scaffolds a fresh project from this repo, no git history carried over:
+
+     ```bash
+     npx create-turbo@latest -e https://github.com/oscaroceguera/core-unnamed
+     ```
+
+   - **GitHub template** — click **Use this template** on GitHub (if enabled on this repo).
+   - **Manual clone** — clone it and repoint the remote:
+
+     ```bash
+     git clone git@github.com:oscaroceguera/core-unnamed.git my-project
+     cd my-project
+     rm -rf .git && git init
+     git remote add origin <your-new-repo-url>
+     ```
+
+2. **Rename the project** — update `"name"` in the root `package.json` (currently `core`), and in each `apps/*` / `packages/*` `package.json` that references it.
+3. **Strip what you don't need** — drop `apps/web`'s JSConf-specific pages/copy, or remove any `packages/*` you won't use (e.g. `@repo/facturapi`, `@repo/stripe`) along with their entries in `pnpm-workspace.yaml` and consuming imports.
+4. **Set up environment variables** — copy `apps/web/.env.example` to `apps/web/.env` and `packages/database/.env.example` (if present) to `packages/database/.env`, filling in your own Neon/Stripe/SES/Facturapi credentials (see [Environment Variables](#environment-variables)).
+5. **Install and verify**:
+
+   ```bash
+   pnpm install
+   pnpm db:generate
+   pnpm dev
+   ```
+
+6. **Add new workspace packages** the same way the existing `@repo/*` packages are structured — see `packages/stripe` or `packages/mailer` as reference shapes (`package.json`, `tsconfig.json`, shared `eslint`/`prettier`/`typescript` configs from `packages/*-config`).
+
 ## Packages
 
 | Path | Package | Description |
