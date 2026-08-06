@@ -1,0 +1,35 @@
+[
+  {
+    "id": "0f9a2b1a-1c2d-4e3f-8a1b-1a2b3c4d5e6f",
+    "firstName": "Sofia",
+    "lastName": "Ramirez",
+    "email": "sofia.ramirez@example.com",
+    "username": "sofia.ramirez",
+    "avatarUrl": "https://i.pravatar.cc/150?u=sofia.ramirez",
+    "phone": "+52-55-1234-5678",
+    "role": "admin",
+    "createdAt": "2024-01-12T09:15:00.000Z"
+  },
+  {
+    "id": "1a2b3c4d-2d3e-4f5a-9b2c-2b3c4d5e6f7a",
+    "firstName": "Diego",
+    "lastName": "Torres",
+    "email": "diego.torres@example.com",
+    "username": "diego.torres",
+    "avatarUrl": "https://i.pravatar.cc/150?u=diego.torres",
+    "phone": "+52-33-2345-6789",
+    "role": "member",
+    "createdAt": "2024-02-03T14:22:00.000Z"
+  },
+  {
+    "id": "2b3c4d5e-3e4f-4a5b-8c3d-3c4d5e6f7a8b",
+    "firstName": "Valentina",
+    "lastName": "Gomez",
+    "email": "valentina.gomez@example.com",
+    "username": "valentina.gomez",
+    "avatarUrl": "https://i.pravatar.cc/150?u=valentina.gomez",
+    "phone": "+52-81-3456-7890",
+    "role": "member",
+    "createdAt": "2024-02-19T11:05:00.000Z"
+  }
+]

@@ -1,0 +1,23 @@
+# @repo/{{kebabCase name}}
+
+Fake JSON data for local dev / demos across apps.
+
+## Usage
+
+```ts
+import { users } from "@repo/{{kebabCase name}}";
+```
+
+Or import raw JSON directly:
+
+```ts
+import users from "@repo/{{kebabCase name}}/users.json";
+```
+
+## Add to an app
+
+```json
+"dependencies": {
+  "@repo/{{kebabCase name}}": "workspace:*"
+}
+```

@@ -102,7 +102,16 @@ This repo doubles as a starter for new Turborepo + pnpm projects with Next.js, P
    pnpm dev
    ```
 
-6. **Add new workspace packages** the same way the existing `@repo/*` packages are structured — see `packages/stripe` or `packages/mailer` as reference shapes (`package.json`, `tsconfig.json`, shared `eslint`/`prettier`/`typescript` configs from `packages/*-config`).
+6. **Add new workspace packages** — use `pnpm turbo gen` to scaffold via templates:
+
+   ```bash
+   pnpm turbo gen package      # Generic package
+   pnpm turbo gen ui           # React component library
+   pnpm turbo gen theme        # Tailwind CSS theme (shared-styles.css + config)
+   pnpm turbo gen mock-data    # Mock data (JSON data + exports)
+   ```
+
+   Or create manually — see `packages/stripe` or `packages/mailer` as reference shapes (`package.json`, `tsconfig.json`, shared `eslint`/`prettier`/`typescript` configs from `packages/*-config`).
 
 ## Packages
 
@@ -125,6 +134,8 @@ This repo doubles as a starter for new Turborepo + pnpm projects with Next.js, P
 
 ```text
 .
+├── turbo/
+│   └── generators/             # Templates for `pnpm turbo gen` (package, ui, theme, mock-data)
 ├── apps/
 │   └── web/                  # Next.js marketing/ticketing site
 └── packages/
