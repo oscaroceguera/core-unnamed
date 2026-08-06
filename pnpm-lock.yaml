@@ -58,6 +58,9 @@ importers:
       '@repo/mailer':
         specifier: workspace:*
         version: link:../../packages/mailer
+      '@repo/mock-data':
+        specifier: workspace:*
+        version: link:../../packages/mock-data
       '@repo/stripe':
         specifier: workspace:*
         version: link:../../packages/stripe
@@ -211,6 +214,18 @@ importers:
       '@types/nodemailer':
         specifier: ^8.0.1
         version: 8.0.1
+      typescript:
+        specifier: ^5.9.2
+        version: 5.9.2
+
+  packages/mock-data:
+    devDependencies:
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
+      '@types/node':
+        specifier: ^24
+        version: 24.13.3
       typescript:
         specifier: ^5.9.2
         version: 5.9.2

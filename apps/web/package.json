@@ -14,6 +14,7 @@
     "@repo/database": "workspace:*",
     "@repo/facturapi": "workspace:*",
     "@repo/mailer": "workspace:*",
+    "@repo/mock-data": "workspace:*",
     "@repo/stripe": "workspace:*",
     "@repo/ui": "workspace:*",
     "next": "16.2.11",

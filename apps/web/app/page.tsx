@@ -3,6 +3,7 @@ import { prisma } from "@repo/database";
 import { AssetsAccess } from "@/components/AssetsAccess";
 import { DatabaseCard } from "@/components/DatabaseCard";
 import { Invoicing } from "@/components/Invoicing";
+import { MockDataCard } from "@/components/MockDataCard";
 import { SendEmail } from "@/components/SendEmail";
 import { StripeCheckout } from "@/components/StripeCheckout";
 
@@ -21,6 +22,7 @@ export default async function Home() {
         <DatabaseCard users={users} />
         <AssetsAccess />
         <Invoicing />
+        <MockDataCard />
       </div>
     </div>
   );
