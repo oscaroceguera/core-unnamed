@@ -24,6 +24,7 @@ flowchart TD
     web --> stripe["@repo/stripe"]
     web --> assets["@repo/assets"]
     web --> facturapi["@repo/facturapi"]
+    web --> mockData["@repo/mock-data"]
 
     database --> neon[("Neon Postgres")]
     mailer --> ses[("AWS SES")]
@@ -107,13 +108,14 @@ This repo doubles as a starter for new Turborepo + pnpm projects with Next.js, P
 
 | Path | Package | Description |
 |---|---|---|
-| `apps/web` | `web` | Next.js 16 site — homepage, Stripe checkout (`actions/checkoutStripe.ts`, `app/api/webhook`, `app/stripe/success-stripe` & `app/stripe/error-stripe`), CFDI invoicing (`actions/invoice-action.ts`, `types/invoice-schema.ts`) via `@repo/facturapi`, and a transactional email server action, built on `@repo/ui` and `@repo/database`. |
+| `apps/web` | `web` | Next.js 16 site — homepage, Stripe checkout (`actions/checkoutStripe.ts`, `app/api/webhook`, `app/stripe/success-stripe` & `app/stripe/error-stripe`), CFDI invoicing (`actions/invoice-action.ts`, `types/invoice-schema.ts`) via `@repo/facturapi`, a transactional email server action, and a mock-data demo card (`components/MockDataCard.tsx`), built on `@repo/ui` and `@repo/database`. |
 | `packages/ui` | `@repo/ui` | Shared React 19 component library and Tailwind styles, published as compiled output from `dist/`. |
 | `packages/database` | `@repo/database` | Prisma data layer on Neon Postgres via `@prisma/adapter-pg`; exports a singleton client and generated types. |
 | `packages/mailer` | `@repo/mailer` | Transactional email via AWS SES (`@aws-sdk/client-sesv2`) and Nodemailer. |
 | `packages/stripe` | `@repo/stripe` | Thin wrapper around the `stripe` SDK for payments/ticketing. |
 | `packages/assets` | `@repo/assets` | Static SVG icons/illustrations/logos, exported for direct import (`@repo/assets/images/*`). |
 | `packages/facturapi` | `@repo/facturapi` | Thin wrapper around the `facturapi` SDK for CFDI invoicing. |
+| `packages/mock-data` | `@repo/mock-data` | Fake JSON data for local dev/demos (e.g. `users.json`), importable as typed data or raw JSON. |
 | `packages/eslint-config` | `@repo/eslint-config` | Shared ESLint flat-config presets: `base`, `next-js`, `react-internal`. |
 | `packages/prettier-config` | `@repo/prettier-config` | Shared Prettier config with import-sorting and Tailwind class-sorting plugins. |
 | `packages/tailwindcss-config` | `@repo/tailwind-config` | Shared Tailwind CSS 4 config and PostCSS setup. |
@@ -131,6 +133,7 @@ This repo doubles as a starter for new Turborepo + pnpm projects with Next.js, P
     ├── eslint-config/          # Shared ESLint configs
     ├── facturapi/              # CFDI invoicing via Facturapi (@repo/facturapi)
     ├── mailer/                 # Email sending via AWS SES (@repo/mailer)
+    ├── mock-data/              # Fake JSON data for dev/demos (@repo/mock-data)
     ├── prettier-config/        # Shared Prettier config
     ├── stripe/                 # Stripe client wrapper (@repo/stripe)
     ├── tailwindcss-config/     # Shared Tailwind config
