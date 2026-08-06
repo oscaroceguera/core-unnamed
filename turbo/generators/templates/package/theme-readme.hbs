@@ -1,0 +1,29 @@
+# @repo/{{kebabCase name}}
+
+Shared Tailwind CSS 4 config for the monorepo. consumed by `apps/<APLICATION_NAME>` and `@repo/<UI_PACKAGE_NAME>`.
+
+## What is this?
+
+Two exports:
+
+| Export | File | Contents |
+|---|---|---|
+| `@repo/tailwind-config` | `shared-styles.css` | `@import "tailwindcss";` — the base Tailwind entrypoint |
+| `@repo/tailwind-config/postcss` | `postcss.config.js` | `postcssConfig` object wiring up `@tailwindcss/postcss` |
+
+## Usage
+
+```css
+/* app/globals.css */
+@import "tailwindcss";
+@import "@repo/{{kebabCase name}}";
+```
+
+```js
+// postcss.config.mjs
+import { postcssConfig } from "@repo/{{kebabCase name}}/postcss";
+
+export default postcssConfig;
+```
+
+`@repo/<UI_PACKAGE_NAME>` layers a Tailwind prefix on top of this import (`@import "tailwindcss" prefix(ui)`) so its component classes don't collide with a consuming app's own Tailwind classes.
